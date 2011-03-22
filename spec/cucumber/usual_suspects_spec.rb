@@ -1,15 +1,15 @@
 require 'spec_helper'
-require 'cucumber/identify/api'
+require 'cucumber/usual_suspects/api'
 
 module Cucumber
-  describe Identify do
-    let(:subject) { Object.new.extend(Identify::Api) }
-    let(:runtime) do
+  describe UsualSuspects do
+    let(:subject) { Object.new.extend(UsualSuspects::Api) }
+    let(:transforms_registry) do
       double('Cucumber Runtume', :register_rb_transform => '(?-mix:a friendly Badger)' )
     end
     
     before(:each) do
-      subject.runtime = runtime
+      subject.transforms_registry = transforms_registry
     end
     
     describe ".expand" do

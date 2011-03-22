@@ -1,4 +1,3 @@
-@announce
 Feature: Identify an entity
   In order to make step definitions more maintainable
   As a cucumber test developer
@@ -8,7 +7,7 @@ Feature: Identify an entity
     Given a file named "features/step_definitions/steps.rb" with:
       """
       $: << File.dirname(__FILE__) + '/../../../../lib'
-      require 'cucumber/identify'
+      require 'cucumber/usual_suspects'
       
       class Person < Struct.new(:age, :name)
         def to_s
