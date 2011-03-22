@@ -1,5 +1,6 @@
 require 'cucumber/usual_suspects/api'
 require 'cucumber/usual_suspects/cucumber_patches'
+require 'cucumber/usual_suspects/dsl'
 
 module Cucumber
   module UsualSuspects

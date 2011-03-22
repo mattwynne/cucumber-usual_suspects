@@ -15,7 +15,7 @@ module Cucumber
     describe ".expand" do
       before(:each) do
         subject.remember 'badger', lambda {
-          phrase /a friendly Badger/ do;end
+          described_as /a friendly Badger/ do;end
         }
       end
 
