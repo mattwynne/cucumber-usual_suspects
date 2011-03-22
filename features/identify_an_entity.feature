@@ -19,7 +19,7 @@ Feature: Identify an entity
         end
       end
       
-      Identify 'person' do
+      Identify 'a Person' do
         phrase /a Person aged (\d+)/ do |age|
           Person.new(age.to_i)
         end
@@ -29,7 +29,7 @@ Feature: Identify an entity
         end
       end
       
-      Given /<person> with blonde hair/ do |person|
+      Given /<a Person> with blonde hair/ do |person|
         announce "#{person} and I have blonde hair"
       end
       """
@@ -37,11 +37,9 @@ Feature: Identify an entity
       """
       Feature:
         Scenario:
-          Given a person aged 5 with blonde hair
-          And a person named Dave with blonde hair
+          Given a Person aged 5 with blonde hair
+          And a Person named Dave with blonde hair
       """
     When I successfully run "cucumber"
-    Then the output should contain "I am a person aged 5 and I have blonde hair"
-    Then the output should contain "I am a person named Dave and I have blonde hair"
-
-  
+    Then the output should contain "I am a Person aged 5 and I have blonde hair"
+    Then the output should contain "I am a Person named Dave and I have blonde hair"
