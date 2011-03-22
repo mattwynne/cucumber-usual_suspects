@@ -19,11 +19,11 @@ Feature: Identify an entity
       end
       
       Identify 'a Person' do
-        described_as /a Person aged (\d+)/ do |age|
+        as /a Person aged (\d+)/ do |age|
           Person.new(age.to_i)
         end
         
-        described_as /a Person named (\w+)/ do |name|
+        as /a Person named (\w+)/ do |name|
           Person.new(nil, name)
         end
       end

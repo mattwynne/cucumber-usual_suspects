@@ -6,7 +6,7 @@ module Cucumber
         instance_exec(&definition)
       end
   
-      def described_as(regexp, &block)
+      def as(regexp, &block)
         transforms << @transforms_registry.register_rb_transform(regexp, block)
       end
   
