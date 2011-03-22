@@ -1,9 +1,10 @@
-require 'cucumber'
 require 'cucumber/usual_suspects/api'
+require 'cucumber/usual_suspects/cucumber_patches'
 
 module Cucumber
   module UsualSuspects
     extend Api
+    self.transforms_registry = Cucumber::RbSupport::RbDsl
     
     module ExpandsStepDefinitionRegexps
       def register_rb_step_definition(regexp, proc)
@@ -11,22 +12,8 @@ module Cucumber
         super expanded_regexp, proc
       end
     end
-  end
-  
-  module RbSupport
-    module RbDsl
-      class << self
-        def extend_rb_language_with(extension_module)
-          @rb_language.extend(extension_module)
-        end
-      end
-      
-      def Identify(thing, &block)
-        Cucumber::UsualSuspects.remember(thing, block)
-      end
-    end
+    
+    Cucumber::RbSupport::RbDsl.extend_rb_language_with(ExpandsStepDefinitionRegexps)
   end
 end
 
-Cucumber::UsualSuspects.transforms_registry = Cucumber::RbSupport::RbDsl
-Cucumber::RbSupport::RbDsl.extend_rb_language_with(Cucumber::UsualSuspects::ExpandsStepDefinitionRegexps)
